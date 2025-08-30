@@ -8,7 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FLINKTAST-DEMO-01" />
+        <module name="FLINKTASK-DEMO-02" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FLINKTASK-DEMO-02" options="" />
+      <module name="FLINKTAST-DEMO-01" options="" />
+    </option>
   </component>
 </project>

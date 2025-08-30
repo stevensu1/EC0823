@@ -1,4 +1,4 @@
-package org.example.demo01;
+package org.example.demo01.sinkBD;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

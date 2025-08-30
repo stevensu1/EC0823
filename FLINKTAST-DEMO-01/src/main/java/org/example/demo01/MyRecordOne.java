@@ -1,6 +1,8 @@
 package org.example.demo01;
 
 import lombok.Data;
+import org.example.demo01.sinkBD.SQLParameter;
+import org.example.demo01.sinkBD.SQLParameterSqlStr;
 
 
 @Data
@@ -11,10 +13,10 @@ public class MyRecordOne implements MyRecord {
     @SQLParameter(index = 2)
     private String name;
     @SQLParameter(index = 3)
-    private int value;
+    private String value;
 
 
-    public MyRecordOne(Integer id, String name, int value) {
+    public MyRecordOne(Integer id, String name, String value) {
         this.id = id;
         this.name = name;
         this.value = value;

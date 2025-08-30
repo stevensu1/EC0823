@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>FLINKTAST-DEMO-01</artifactId>
+  <artifactId>FLINKTASK-DEMO-02</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>FLINKTAST-DEMO-01</name>
+  <name>FLINKTASK-DEMO-02</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -17,6 +17,9 @@
     <maven.compiler.target>17</maven.compiler.target>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <flink.version>1.17.1</flink.version>
+    <scala.binary.version>2.12</scala.binary.version>
+    
+
   </properties>
 
   <dependencies>
@@ -66,6 +69,29 @@
       <version>${flink.version}</version>
     </dependency>
 
+    <!-- Kryo 序列化支持（替换Scala依赖） -->
+    <dependency>
+      <groupId>com.esotericsoftware</groupId>
+      <artifactId>kryo</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+
+<!--    &lt;!&ndash; Flink Scala 支持（解决 FlinkScalaKryoInstantiator 问题） &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.flink</groupId>-->
+<!--      <artifactId>flink-scala_${scala.binary.version}</artifactId>-->
+<!--      <version>${flink.version}</version>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash; Flink 流处理 Scala API &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.flink</groupId>-->
+<!--      <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>-->
+<!--      <version>${flink.version}</version>-->
+<!--    </dependency>-->
+    
+
+
 
     <dependency>
       <groupId>junit</groupId>
@@ -85,11 +111,61 @@
       <version>1.18.34</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- MyBatis-Flex 相关依赖 -->
+    <dependency>
+      <groupId>com.mybatis-flex</groupId>
+      <artifactId>mybatis-flex-core</artifactId>
+      <version>1.9.7</version>
+    </dependency>
+    
+    <!-- MyBatis-Flex 处理器 -->
+    <dependency>
+      <groupId>com.mybatis-flex</groupId>
+      <artifactId>mybatis-flex-processor</artifactId>
+      <version>1.9.7</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- MyBatis-Flex Spring Boot Starter (可选，用于Spring Boot集成) -->
+    <dependency>
+      <groupId>com.mybatis-flex</groupId>
+      <artifactId>mybatis-flex-spring</artifactId>
+      <version>1.9.7</version>
+    </dependency>
+
+    <!-- 数据库连接池相关 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.23</version>
+    </dependency>
+
+    <!-- 日志依赖 -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.13</version>
+    </dependency>
+    
+<!--    <dependency>-->
+<!--      <groupId>ch.qos.logback</groupId>-->
+<!--      <artifactId>logback-classic</artifactId>-->
+<!--      <version>1.4.14</version>-->
+<!--    </dependency>-->
   </dependencies>
 
 
   <build>
     <plugins>
+      <!-- Maven 编译插件配置 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+      </plugin>
+      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -121,7 +197,7 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <!-- Replace this with the main class of your job -->
-                  <mainClass>org.example.demo01.App</mainClass>
+                  <mainClass>org.example02.App</mainClass>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
               </transformers>
@@ -131,5 +207,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
